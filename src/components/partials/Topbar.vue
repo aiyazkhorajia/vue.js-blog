@@ -2,9 +2,9 @@
   <b-navbar toggleable="lg" type="dark" variant="dark">
     <b-navbar-brand href="#">NavBar</b-navbar-brand>
     <b-navbar-nav>
-      <b-nav-item href="/">Home</b-nav-item>
-      <b-nav-item href="/posts">Posts</b-nav-item>
-      <b-nav-item href="/create-post">Create Post</b-nav-item>
+        <router-link tag="li" active-class="active" to="/" exact><a>Home</a></router-link>
+        <router-link tag="li" active-class="active" to="/posts"><a>Posts</a></router-link>
+        <router-link tag="li" active-class="active" to="/create-post"><a>Create Post</a></router-link>
     </b-navbar-nav>
   </b-navbar>
 </template>

@@ -1,25 +1,32 @@
 <template>
       <b-container>
         <h2>Blog Posts</h2>
-        <!-- {{ posts }} -->
         <b-table striped hover
           :items="posts"
           :fields="fields"
-        ></b-table>
+          :busy="loading"
+        >
+          <div slot="table-busy" class="text-center text-danger my-2">
+            <b-spinner class="align-middle"></b-spinner>
+            <strong>Loading...</strong>
+          </div>
+           <!-- A custom formatted column -->
+          <template slot="title" slot-scope="data">
+            <router-link tag="li" :to="'/post/' + data.item.id">
+              {{ data.item.title }}
+            </router-link>
+
+          </template>
+        </b-table>
       </b-container>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   data () {
     return {
-      posts: {},
-      items: [
-          { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-          { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-          { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-          { age: 38, first_name: 'Jami', last_name: 'Carney' }
-        ],
         fields: [
           { key: 'userId', label: 'User Id', sortable: true, sortDirection: 'desc' },
           { key: 'id', label: 'Id', sortable: true, class: 'text-center' },
@@ -28,23 +35,14 @@ export default {
         ],
     }
   },
+  computed:{
+    ...mapGetters([ "posts", "loading" ])
+  },
   mounted(){
     this.fetchPosts();
   },
   methods:{
-    fetchPosts(){
-      axios.get('https://jsonplaceholder.typicode.com/posts/')
-      .then(response => {
-          //console.log('response, ', response)
-          this.posts = response.data;
-      })
-      .catch(error => {
-          console.log(error)
-      })
-      .finally(() => {
-          //
-      })
-    }
+    ...mapActions([ "fetchPosts" ])
   }
 }
 </script>
