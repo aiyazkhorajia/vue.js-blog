@@ -5,23 +5,33 @@ import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import store from './store/posts'
+import VueI18n from 'vue-i18n'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import en from './language/en.json'
+import nl from './language/nl.json'
 Vue.config.productionTip = false
-//import axios from 'axios'
-//import VueAxios from 'vue-axios'
+
 
 /* eslint-disable no-new */
 Vue.use(BootstrapVue)
-//Vue.use(axios)
+Vue.use(VueI18n)
 
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-//import axios from 'axios'
-//Vue.use(axios)
+
+const i18n = new VueI18n({
+  locale: localStorage.getItem("language") ? localStorage.getItem("language") : 'en',
+  fallbackLocale: localStorage.getItem("language") ? localStorage.getItem("language") : 'en',
+  messages: {
+    en: en,
+    nl: nl
+  }
+});
 
 new Vue({
   el: '#app',
+  i18n,
   router,
   components: { App },
   template: '<App/>',

@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <topbar-view/>
-    <router-view/>
+    <b-container>
+      <topbar-view/>
+      <router-view/>
+    </b-container>
   </div>
 </template>
 
@@ -16,4 +18,7 @@ export default {
 </script>
 
 <style>
+.theme-color{
+  background-color: burlywood;
+}
 </style>

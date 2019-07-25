@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 const state = {
   posts:[],
-  loading: false
+  loading: false,
+  //language:
 }
 
 // mutations are operations that actually mutates the state.

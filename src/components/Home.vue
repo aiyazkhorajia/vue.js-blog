@@ -1,10 +1,7 @@
 <template>
-      <b-container>
-        <b-jumbotron header="BootstrapVue" lead="Bootstrap v4 Components for Vue.js 2">
-          <p>For more information visit our website</p>
-          <b-btn variant="info" href="https://bootstrap-vue.js.org/">More Info</b-btn>
-        </b-jumbotron>
-      </b-container>
+  <b-jumbotron header="Home" lead="Welcome to the our blog">
+    <p>You can browse through the latest posts from menu.</p>
+  </b-jumbotron>
 </template>
 
 <script>

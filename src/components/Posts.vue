@@ -1,6 +1,6 @@
 <template>
       <b-container>
-        <h2>Blog Posts</h2>
+        <h2>{{ $t('Blog Posts') }}</h2>
         <b-table striped hover
           :items="posts"
           :fields="fields"
@@ -12,10 +12,17 @@
           </div>
            <!-- A custom formatted column -->
           <template slot="title" slot-scope="data">
-            <router-link tag="li" :to="'/post/' + data.item.id">
+            <router-link :to="'/post/' + data.item.id">
               {{ data.item.title }}
             </router-link>
-
+          </template>
+          <template slot="action" slot-scope="data">
+            <router-link :to="'/post/' + data.item.id">
+              Edit
+            </router-link>
+            <router-link :to="'/post/' + data.item.id">
+              Delete
+            </router-link>
           </template>
         </b-table>
       </b-container>
@@ -31,7 +38,8 @@ export default {
           { key: 'userId', label: 'User Id', sortable: true, sortDirection: 'desc' },
           { key: 'id', label: 'Id', sortable: true, class: 'text-center' },
           { key: 'title', label: 'Title' },
-          { key: 'body', label: 'Description' }
+          { key: 'body', label: 'Description' },
+          { key: 'action', label: 'Action' }
         ],
     }
   },
